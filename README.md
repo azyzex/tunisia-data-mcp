@@ -7,6 +7,8 @@ A remote [Model Context Protocol](https://modelcontextprotocol.io) server that g
 
 It runs on Cloudflare Workers' free tier, needs no API key, and is read-only. You can ask in English, French or Arabic.
 
+**Live server:** `https://tunisia-data-mcp.azizguenni0.workers.dev/mcp`. In Claude, go to **Settings → Connectors → Add custom connector** and paste this URL. Landing page: [tunisia-data-mcp.azizguenni0.workers.dev](https://tunisia-data-mcp.azizguenni0.workers.dev).
+
 > *"Give me a profile of Kasserine."* · *"How has inflation evolved since 2025?"* · *"Rank the governorates by doctors per inhabitant."* · *"What does the 2014 census say about rural unemployment in Sidi Bouzid?"* · *"Is there open data on pharmacies on duty?"*
 
 ## Tools
