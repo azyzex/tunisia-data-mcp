@@ -1,0 +1,11 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "tunisia-data-mcp",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"observability": { "enabled": true },
+	// Response cache for INS calls (free tier). On first deploy Wrangler
+	// provisions the namespace automatically; locally it is simulated.
+	"kv_namespaces": [{ "binding": "CACHE" }]
+}

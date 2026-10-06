@@ -1,0 +1,36 @@
+{
+  "name": "tunisia-data-mcp",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build-index": "tsx scripts/build-index.ts",
+    "build-availability": "tsx scripts/build-availability.ts",
+    "build-opendata": "tsx scripts/build-opendata.ts",
+    "build-data": "npm run build-index && npm run build-availability && npm run build-opendata",
+    "smoke": "tsx scripts/smoke.ts",
+    "inspector": "npx @modelcontextprotocol/inspector"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Remote MCP server exposing official Tunisian statistics (INS) to Claude",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "agents": "^0.26.0",
+    "fast-xml-parser": "^5.11.2",
+    "fflate": "^0.8.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261006.1",
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3",
+    "wrangler": "^4.147.0"
+  },
+  "private": true,
+  "type": "module"
+}
