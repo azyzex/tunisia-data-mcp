@@ -5,3 +5,4 @@ dist/
 .wrangler-dev.log
 .cache/
 .cache-*.log
+brag-output/

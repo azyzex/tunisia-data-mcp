@@ -133,7 +133,7 @@ export function freshnessWarnings(
 		const lastYear = Number(series.last_period.slice(0, 4));
 		if (lastYear <= year - 3) {
 			warnings.push(
-				`The most recent value is for ${series.last_period}. This is not current data; say so explicitly when citing it.`,
+				`The most recent value is for ${series.last_period}. This is not current data.`,
 			);
 		}
 		if (lastYear > year) {
@@ -144,7 +144,7 @@ export function freshnessWarnings(
 	}
 	if (series.missing_periods.length) {
 		warnings.push(
-			`INS has no value for ${series.missing_periods.length} period(s) inside the range (${summarize(series.missing_periods)}). They are returned as null; do not interpolate them silently.`,
+			`INS has no value for ${series.missing_periods.length} period(s) inside the range (${summarize(series.missing_periods)}). They are returned as null: INS published no value for them.`,
 		);
 	}
 	if (metadataUpdated && Number(metadataUpdated.slice(0, 4)) <= year - 5) {

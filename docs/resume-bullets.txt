@@ -1,0 +1,7 @@
+Tunisia Data — MCP connector for Claude (TypeScript, Cloudflare Workers) · github.com/azyzex/tunisia-data-mcp
+
+- Built and deployed a remote MCP server giving Claude sourced access to Tunisia's official statistics (7,000 INS indicators, 78 datasets) and 2,900 open datasets from data.gov.tn; 11 read-only tools, free-tier hosting.
+- Reverse-engineered an undocumented government XML API from its web client and documented its quirks; built throttled, resumable crawlers that indexed which of 7,034 indicators actually publish data (6,656) and at which levels.
+- Cut per-request CPU from 53 ms to under 10 ms (Workers free-plan limit) with a single-pass XML scanner and server-side filtering that shrank responses by about 80%; added KV caching with stale fallback for an unreliable upstream.
+- Designed for data honesty: gaps kept as null, freshness and projection warnings, and corrected upstream metadata errors (values labelled as counts but published in thousands).
+- Shipped with 62 unit tests, an end-to-end MCP smoke test, CI and weekly data refresh on GitHub Actions, and a landing page with a live governorate map.

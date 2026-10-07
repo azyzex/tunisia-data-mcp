@@ -1,0 +1,48 @@
+=== English ===
+
+Quick question: how many doctors are there in your governorate?
+
+I had no idea either. The answer exists. INS publishes thousands of numbers about Tunisia: population, prices, jobs, health, schools, often down to each governorate. But it lives in a portal that is, let's say, not fun to dig through.
+
+So I built something small: Tunisia Data. You add it to Claude once, then you just ask.
+"Give me a profile of Kasserine."
+"How has inflation moved this year?"
+"Which governorates have the fewest doctors?"
+
+Claude answers with the official figures and always tells you where they come from and which year they are from. If the data is old, it says so. If a year is missing, it doesn't invent one.
+
+A few things I didn't expect:
+- Tunis has 30.9 doctors per 10,000 people. Kasserine has 5.6. Reading it is one thing; seeing it on a map is another.
+- Official data is messy. Missing years, labels that say "number" when they mean "thousands", a server that went down for 9 minutes in the middle of my tests. Most of the work was making the answers honest, not just making them appear.
+- You can ask in English, French or Arabic.
+
+It's free and you don't need an account. If you're writing a mémoire, working on a story, or just curious about your region, try it and tell me what breaks.
+
+Try it: https://tunisia-data-mcp.azizguenni0.workers.dev
+Code: https://github.com/azyzex/tunisia-data-mcp
+
+(Attach brag.mp4 to the post, it autoplays in the feed.)
+
+
+=== Français ===
+
+Petite question : combien de médecins y a-t-il dans votre gouvernorat ?
+
+Moi non plus, je ne savais pas. La réponse existe pourtant. L'INS publie des milliers de chiffres sur la Tunisie : population, prix, emploi, santé, écoles, souvent par gouvernorat. Mais tout ça vit dans un portail qui n'est pas vraiment agréable à fouiller.
+
+Alors j'ai construit un petit outil : Tunisia Data. On l'ajoute une fois à Claude, et ensuite on pose simplement la question.
+« Fais-moi le profil de Kasserine. »
+« Comment l'inflation a-t-elle évolué cette année ? »
+« Quels gouvernorats ont le moins de médecins ? »
+
+Claude répond avec les chiffres officiels, en précisant toujours la source et l'année. Si la donnée est ancienne, il le dit. Si une année manque, il n'en invente pas.
+
+Quelques surprises en chemin :
+- Tunis compte 30,9 médecins pour 10 000 habitants. Kasserine, 5,6. Le lire, c'est une chose ; le voir sur une carte, c'en est une autre.
+- Les données officielles sont désordonnées. Des années manquantes, des unités qui disent « nombre » alors qu'il s'agit de milliers, un serveur tombé 9 minutes en plein milieu de mes tests. L'essentiel du travail a été de rendre les réponses honnêtes, pas seulement de les faire apparaître.
+- On peut poser ses questions en français, en anglais ou en arabe.
+
+C'est gratuit et sans compte. Si vous préparez un mémoire, un article, ou si vous êtes simplement curieux de votre région, essayez et dites-moi ce qui coince.
+
+Essayer : https://tunisia-data-mcp.azizguenni0.workers.dev
+Code : https://github.com/azyzex/tunisia-data-mcp

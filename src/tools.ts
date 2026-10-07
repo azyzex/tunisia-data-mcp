@@ -14,7 +14,7 @@ export const SERVER_INSTRUCTIONS =
 	"- Census 2014 tables, population projections 2014-2044, national accounts: list_datasets -> describe_dataset -> query_dataset.\n" +
 	"- Administrative, municipal and sector datasets (budgets, agriculture, facilities...): search_open_data -> preview_open_data.\n" +
 	"- Regions: names in French, English or Arabic, or ISO codes (TN-61). INS keys are not ISO numbers.\n" +
-	"Always report the unit, the period, the source and any warnings returned; never present old data as current; never fill missing periods.";
+	"Every data result includes its unit, period and source, warnings about old data or projections, and missing periods as null (never estimated).";
 
 export function createServer(client: InsClient, fetchImpl: typeof fetch = fetch): McpServer {
 	const server = new McpServer({ name: "tunisia-data", version: "2.0.0" }, { instructions: SERVER_INSTRUCTIONS });

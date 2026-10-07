@@ -1,0 +1,15 @@
+Tunisia Data: remote MCP server (TypeScript, Cloudflare Workers, free tier) giving Claude sourced access to Tunisia's official statistics (INS, ~7,000 indicators, 78 datasets) and the data.gov.tn catalog (~2,900 datasets).
+
+11 read-only tools and 3 prompts: indicator search (French/English), time series with gaps kept as null and summary stats, regional rankings, governorate profiles with per-capita ratios, generic queries on any INS dataset (2014 census, projections, national accounts), and CSV/XLSX/JSON/GeoJSON previews of open data files. Regions resolve from French, English or Arabic names and ISO codes.
+
+Engineering highlights:
+- Reverse-engineered the undocumented INS XML API (Prognoz platform) from the portal's JavaScript; found its quirks (silent empty "Success" responses, a Period filter that only works with plain years and an explicit frequency, region keys that differ from ISO codes).
+- Stateless MCP (Agents SDK, MCP SDK v2). Catalogs ship as bundled snapshots; only values are fetched live, cached in KV with a stale fallback when INS is down.
+- Built an availability index by probing all 7,034 indicators in throttled, resumable batches: 6,656 have data, 338 at governorate level. Search hides empty categories and ranks live series first.
+- Kept every request under the free plan's 10 ms CPU budget: a single-pass GetData scanner (53 ms to 9 ms) plus server-side year filtering (790 KB to 170 KB responses).
+- Data honesty: freshness warnings, flagged projections, and corrected INS metadata errors (labour survey values labelled as counts but published in thousands).
+- Minimal XLSX reader (fflate), Windows-1252 CSV handling, and clear errors for data.gov.tn's broken TLS chain.
+- 62 Vitest tests, an end-to-end MCP smoke test, GitHub Actions CI, and a landing page with a live governorate map.
+
+Live: https://tunisia-data-mcp.azizguenni0.workers.dev
+Code: https://github.com/azyzex/tunisia-data-mcp

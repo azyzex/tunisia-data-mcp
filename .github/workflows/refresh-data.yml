@@ -1,0 +1,55 @@
+name: Refresh data snapshots
+
+# Weekly rebuild of the bundled snapshots (INS catalog, availability index,
+# data.gov.tn catalog), then test, commit and redeploy.
+# Deploy needs a repository secret CLOUDFLARE_API_TOKEN ("Edit Cloudflare
+# Workers" template) and CLOUDFLARE_ACCOUNT_ID; without them the job still
+# refreshes and commits the data, and skips the deploy.
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Mondays 03:00 UTC (04:00 in Tunisia)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # ~20 minutes, throttled and resumable; INS is sometimes down, so retry once.
+      - name: Rebuild snapshots
+        run: npm run build-data || (sleep 300 && npm run build-data)
+      - run: npm run typecheck
+      - run: npm test
+      - name: Commit if the data changed
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data samples
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Refresh data snapshots ($(date -u +%Y-%m-%d))"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Deploy
+        if: steps.commit.outputs.changed == 'true' && env.CLOUDFLARE_API_TOKEN != ''
+        run: npx wrangler deploy

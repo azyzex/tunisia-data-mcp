@@ -7,6 +7,8 @@ A remote [Model Context Protocol](https://modelcontextprotocol.io) server that g
 
 It runs on Cloudflare Workers' free tier, needs no API key, and is read-only. You can ask in English, French or Arabic.
 
+**Website:** a landing page with a live map of doctors per inhabitant by governorate, the [privacy policy](https://tunisia-data-mcp.azizguenni0.workers.dev/privacy) and the status page at `/health`, all served by the same Worker.
+
 **Live server:** `https://tunisia-data-mcp.azizguenni0.workers.dev/mcp`. In Claude, go to **Settings → Connectors → Add custom connector** and paste this URL. Landing page: [tunisia-data-mcp.azizguenni0.workers.dev](https://tunisia-data-mcp.azizguenni0.workers.dev).
 
 > *"Give me a profile of Kasserine."* · *"How has inflation evolved since 2025?"* · *"Rank the governorates by doctors per inhabitant."* · *"What does the 2014 census say about rural unemployment in Sidi Bouzid?"* · *"Is there open data on pharmacies on duty?"*
@@ -91,6 +93,10 @@ Refresh the snapshots (about 20 minutes, polite to INS, resumable if interrupted
 ```bash
 npm run build-data     # = build-index (catalog + dimensions) + build-availability + build-opendata
 ```
+
+### Automatic data refresh
+
+`.github/workflows/refresh-data.yml` rebuilds the snapshots every Monday, runs the tests and commits any change. To also redeploy automatically, add two repository secrets: `CLOUDFLARE_API_TOKEN` (Cloudflare dashboard → My Profile → API Tokens → template "Edit Cloudflare Workers") and `CLOUDFLARE_ACCOUNT_ID`. Without them, the job refreshes and commits, but you deploy yourself.
 
 ### Deploy (free tier)
 

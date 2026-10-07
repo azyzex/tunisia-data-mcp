@@ -197,8 +197,8 @@ export function registerIndicatorTools(server: McpServer, client: InsClient) {
 			title: "Get a time series",
 			description:
 				"Fetch the values of one indicator from INS for one region, or up to 6 regions side by side. Returns observations with explicit unit, scale, " +
-				"period covered, gaps (null, never filled), summary figures (latest value, change, year-on-year, min/max, CAGR) and freshness warnings " +
-				"that must be relayed to the user.",
+				"period covered, gaps (null, never filled), summary figures (latest value, change, year-on-year, min/max, CAGR) and warnings when " +
+				"the data is old, projected or incomplete.",
 			inputSchema: z.object({
 				indicator_key: z.number().int().describe("Indicator key from search_indicators."),
 				region: z
