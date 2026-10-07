@@ -10,6 +10,8 @@ import { iconSvg, landingPage, privacyPage, type MapData } from "./landing";
 import { openData } from "./opendata";
 import { createServer } from "./tools";
 import { fetchObservations } from "./tools/indicators";
+import faviconPng from "./assets/favicon-64.png";
+import iconPng from "./assets/icon-512.png";
 
 export interface Env {
 	CACHE?: KVNamespace;
@@ -68,6 +70,11 @@ export default {
 				return html(landingPage(`${url.origin}/mcp`, await doctorsMap(client)), 3600);
 			case "/privacy":
 				return html(privacyPage(), 86400);
+			// Claude and the Connectors Directory show the favicon of the server's origin.
+			case "/favicon.ico":
+				return new Response(faviconPng, { headers: { "content-type": "image/png", "cache-control": "public, max-age=604800" } });
+			case "/icon.png":
+				return new Response(iconPng, { headers: { "content-type": "image/png", "cache-control": "public, max-age=604800" } });
 			case "/icon.svg":
 				return new Response(iconSvg(), { headers: { "content-type": "image/svg+xml", "cache-control": "public, max-age=604800" } });
 			case "/health":

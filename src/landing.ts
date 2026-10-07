@@ -107,7 +107,7 @@ export function landingPage(mcpUrl: string, map: MapData | null): string {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tunisia Data for Claude</title>
 <meta name="description" content="A free connector that lets Claude answer questions with Tunisia's official statistics (INS) and open data (data.gov.tn), with sources and dates.">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="64x64"><link rel="apple-touch-icon" href="/icon.png">
 ${FONTS}
 <style>${BASE_CSS}
 header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:15px}

@@ -6,3 +6,5 @@ dist/
 .cache/
 .cache-*.log
 brag-output/
+brag-output-*/
+.brag2

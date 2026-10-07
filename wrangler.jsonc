@@ -5,6 +5,8 @@
 	"compatibility_date": "2026-10-01",
 	"compatibility_flags": ["nodejs_compat"],
 	"observability": { "enabled": true },
+	// Bundle PNG icons as binary data (served at /icon.png and /favicon.ico).
+	"rules": [{ "type": "Data", "globs": ["**/*.png"], "fallthrough": true }],
 	// Response cache for INS calls (free tier). On first deploy Wrangler
 	// provisions the namespace automatically; locally it is simulated.
 	"kv_namespaces": [{ "binding": "CACHE" }]
