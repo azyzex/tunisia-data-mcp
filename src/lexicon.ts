@@ -16,6 +16,8 @@ export const EN_PHRASES: [string, string][] = [
 	["money supply", "monnaie"],
 	["gross domestic product", "pib"],
 	["consumer price", "prix consommation"],
+	// "Inflation" means consumer price inflation; without this, industrial price indices rank first.
+	["inflation", "prix consommation"],
 	["consumer prices", "prix consommation"],
 	["olive oil", "huile olive"],
 	["trade balance", "balance commerciale"],

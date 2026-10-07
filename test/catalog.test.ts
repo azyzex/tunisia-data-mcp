@@ -54,6 +54,8 @@ describe("searchIndicators", () => {
 		const keys = searchIndicators("unemployment rate women", { limit: 10 }).hits.map((h) => h.ind.key);
 		expect(keys).toContain(40008002);
 		expect(searchIndicators("consumer price index", { limit: 3 }).hits[0].ind.key).toBe(28228379);
+		// The CPI (28228379) or its year-on-year change, i.e. the inflation rate (28228399).
+		expect([28228379, 28228399]).toContain(searchIndicators("inflation", { limit: 1 }).hits[0].ind.key);
 		expect(searchIndicators("doctors", { limit: 5, level: "governorate" }).hits.map((h) => h.ind.key)).toContain(22300416);
 	});
 
